@@ -1478,6 +1478,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="ADD AGENT"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BTNAddAgentMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

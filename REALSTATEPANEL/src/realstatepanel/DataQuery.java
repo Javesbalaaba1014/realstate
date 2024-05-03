@@ -112,7 +112,7 @@ public class DataQuery {
         
         try {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT `idAgent`, `Agent_Fname`, `Agent_Lname`, `Agent_Phone`, `Agent_Rev`, `Agent_Sold`, `Agent_Rent`, `Agent_Pic`, `is_Archive`, `username`, `password` FROM `agent` WHERE `is_Archive` = 1");
+            rs = st.executeQuery("SELECT `idAgent`, `Agent_Fname`, `Agent_Lname`, `Agent_Phone`, `Agent_Rev`, `Agent_Sold`, `Agent_Rent`, `Agent_Pic`, `is_Archive`, `username`, `password` FROM `agent` WHERE `is_Archive` = 0");
 
             admindata ad;
             while(rs.next()){

@@ -5,7 +5,16 @@
  */
 package realstatepanel;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -53,27 +62,28 @@ public class AGENT_ADD extends javax.swing.JFrame {
         jPanel19 = new javax.swing.JPanel();
         jLabel58 = new javax.swing.JLabel();
         jLabel61 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        JTFfname = new javax.swing.JTextField();
         jLabel62 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        JTFlname = new javax.swing.JTextField();
         LBLPIC = new javax.swing.JLabel();
         jLabel64 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        JTFphone = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel65 = new javax.swing.JLabel();
         jLabel66 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        JTFusername = new javax.swing.JTextField();
         jLabel67 = new javax.swing.JLabel();
         jLabel68 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        JTFpassword = new javax.swing.JTextField();
         jLabel69 = new javax.swing.JLabel();
         jLabel70 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jLabel63 = new javax.swing.JLabel();
         LBLBrowse = new javax.swing.JButton();
         LBLBrowse1 = new javax.swing.JButton();
-        LBLBrowse2 = new javax.swing.JButton();
+        BTNADDAGENT = new javax.swing.JButton();
         LBLBrowse3 = new javax.swing.JButton();
+        BTNviewAgent1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -244,16 +254,16 @@ public class AGENT_ADD extends javax.swing.JFrame {
         jLabel61.setText("FIRST NAME :");
         jPanel15.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel15.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 320, 50));
+        JTFfname.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel15.add(JTFfname, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 320, 50));
 
         jLabel62.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel62.setForeground(new java.awt.Color(0, 0, 0));
         jLabel62.setText("ACCOUNT INFORMATION");
         jPanel15.add(jLabel62, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, -1, -1));
 
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel15.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 180, 320, 50));
+        JTFlname.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel15.add(JTFlname, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 180, 320, 50));
 
         LBLPIC.setBackground(new java.awt.Color(204, 204, 204));
         LBLPIC.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -266,8 +276,8 @@ public class AGENT_ADD extends javax.swing.JFrame {
         jLabel64.setText("PHONE NUMBER :");
         jPanel15.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
 
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel15.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 320, 50));
+        JTFphone.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel15.add(JTFphone, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 320, 50));
         jPanel15.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 1580, 30));
 
         jLabel65.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -280,8 +290,8 @@ public class AGENT_ADD extends javax.swing.JFrame {
         jLabel66.setText("AGENT INFORMATION");
         jPanel15.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel15.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 320, 50));
+        JTFusername.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel15.add(JTFusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 320, 50));
 
         jLabel67.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel67.setForeground(new java.awt.Color(0, 0, 0));
@@ -293,8 +303,8 @@ public class AGENT_ADD extends javax.swing.JFrame {
         jLabel68.setText("PASSWORD :");
         jPanel15.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 520, -1, -1));
 
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel15.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 500, 320, 50));
+        JTFpassword.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel15.add(JTFpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 500, 320, 50));
 
         jLabel69.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(0, 0, 0));
@@ -305,8 +315,6 @@ public class AGENT_ADD extends javax.swing.JFrame {
         jLabel70.setForeground(new java.awt.Color(0, 0, 0));
         jLabel70.setText("PICTURE :");
         jPanel15.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 300, -1, -1));
-
-        jTextField6.setText("jTextField1");
         jPanel15.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 100, 30));
 
         jLabel63.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -325,11 +333,24 @@ public class AGENT_ADD extends javax.swing.JFrame {
         });
         jPanel15.add(LBLBrowse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 280, -1, -1));
 
-        LBLBrowse2.setText("ADD");
-        jPanel15.add(LBLBrowse2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 690, -1, -1));
+        BTNADDAGENT.setText("ADD");
+        BTNADDAGENT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNADDAGENTActionPerformed(evt);
+            }
+        });
+        jPanel15.add(BTNADDAGENT, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 690, -1, -1));
 
         LBLBrowse3.setText("UPDATE");
         jPanel15.add(LBLBrowse3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 690, -1, -1));
+
+        BTNviewAgent1.setText("SEARCH");
+        BTNviewAgent1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTNviewAgent1ActionPerformed(evt);
+            }
+        });
+        jPanel15.add(BTNviewAgent1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, -1));
 
         getContentPane().add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, 860));
 
@@ -345,7 +366,14 @@ public class AGENT_ADD extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel60MouseClicked
 
     private void BTNviewAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNviewAgentActionPerformed
-        // TODO add your handling code here:
+
+        AGENT_VIEW AA = new AGENT_VIEW();
+        AA.setVisible(true);
+        AA.pack();
+        AA.setLocationRelativeTo(null);
+        AA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+
     }//GEN-LAST:event_BTNviewAgentActionPerformed
 
     private void LBLBrowse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LBLBrowse1ActionPerformed
@@ -353,6 +381,89 @@ public class AGENT_ADD extends javax.swing.JFrame {
         Myfunc mf = new Myfunc();
         imagePth = mf.browseImage(LBLPIC);
     }//GEN-LAST:event_LBLBrowse1ActionPerformed
+
+    private void BTNviewAgent1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNviewAgent1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTNviewAgent1ActionPerformed
+
+    //VERIFY THE INFORMATION HAS THE SAME AS THE CURRENT DATABASE 
+    public boolean verifData(){
+    
+        if(JTFusername.getText().equals("") && JTFpassword.getText().equals("")            )
+        {
+            JOptionPane.showMessageDialog(null, "One or more Field are Empty!");
+            return false;
+        }        
+        else if (imagePth == null){
+            JOptionPane.showMessageDialog(null, "No Image Selected!!");
+            return false;
+            
+        }else{
+            return true;
+        }
+    
+//        return false;
+    }
+    
+    public boolean isUsernameExist(String un){
+        boolean uExist = false;
+        Connection con = MyConnection.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        
+        try {
+            ps = con.prepareStatement("SELECT * FROM `agent` WHERE `username` = ?");
+            ps.setString(1, JTFusername.getText());
+            
+            rs = ps.executeQuery();
+            
+            if (rs.next()){
+                uExist = true;
+            }
+            
+        } catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return uExist;
+    }
+    
+    private void BTNADDAGENTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNADDAGENTActionPerformed
+        if (verifData()){
+        Connection con = MyConnection.getConnection();
+        PreparedStatement ps;
+        
+        try {
+
+             ps = con.prepareStatement("INSERT INTO `agent`( `is_Archive`,`Agent_Fname`, `Agent_Lname`, `Agent_Phone`, `Agent_Pic`, `username`, `password`) VALUES (0,?,?,?,?,?,?)");
+            ps.setString(1, JTFfname.getText());
+            ps.setString(2, JTFlname.getText());
+            ps.setString(3, JTFphone.getText());
+            ps.setString(5, JTFusername.getText());
+            ps.setString(6, JTFpassword.getText());
+           
+            InputStream img = new FileInputStream(new File(imagePth));
+            
+            ps.setBlob(4, img);
+            
+            if (isUsernameExist(JTFusername.getText())){
+                JOptionPane.showMessageDialog(null, "Username Already Existed");
+            }else {
+                if(ps.executeUpdate() != 0){
+                JOptionPane.showMessageDialog(null, "Account Created!");
+                }
+                else{
+                JOptionPane.showMessageDialog(null, "Something Wrong");
+                }
+            }
+            
+           
+        
+ 
+                    } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(AGENT_ADD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+    }//GEN-LAST:event_BTNADDAGENTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -390,12 +501,18 @@ public class AGENT_ADD extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTNADDAGENT;
     private javax.swing.JButton BTNAddAgent;
     private javax.swing.JButton BTNviewAgent;
+    private javax.swing.JButton BTNviewAgent1;
+    private javax.swing.JTextField JTFfname;
+    private javax.swing.JTextField JTFlname;
+    private javax.swing.JTextField JTFpassword;
+    private javax.swing.JTextField JTFphone;
+    private javax.swing.JTextField JTFusername;
     private javax.swing.JLabel LBLAgent;
     private javax.swing.JButton LBLBrowse;
     private javax.swing.JButton LBLBrowse1;
-    private javax.swing.JButton LBLBrowse2;
     private javax.swing.JButton LBLBrowse3;
     private javax.swing.JLabel LBLPIC;
     private javax.swing.JLabel jLabel49;
@@ -426,11 +543,6 @@ public class AGENT_ADD extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel logo1;
     // End of variables declaration//GEN-END:variables

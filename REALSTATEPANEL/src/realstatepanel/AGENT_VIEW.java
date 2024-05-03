@@ -783,6 +783,11 @@ public class AGENT_VIEW extends javax.swing.JFrame {
         });
 
         BTNAddAgent.setText("ADD AGENT");
+        BTNAddAgent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BTNAddAgentMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -927,8 +932,8 @@ public class AGENT_VIEW extends javax.swing.JFrame {
     
         DataQuery dq = new DataQuery();
         ArrayList<admindata> adlist = dq.AdminAccountList(currentAdminId);
-        String[] colNames = {"Agent ID","Agent First name","Agent Last name","Agent Phone ","Agent Total Sales","Agent Sold","Agent Rent" , "Agent_Picture"};
-        Object[][] rows = new Object[adlist.size()][7]; 
+        String[] colNames = {"Agent ID","Agent First name","Agent Last name","Agent Phone ","Agent Total Sales","Agent Sold","Agent Rent" ,"username" , "password" ,"Agent_Picture"};
+        Object[][] rows = new Object[adlist.size()][10]; 
         
         for(int i = 0; i < adlist.size(); i++){
             rows[i][0] = adlist.get(i).getIdAgent();
@@ -938,8 +943,8 @@ public class AGENT_VIEW extends javax.swing.JFrame {
             rows[i][4] = adlist.get(i).getAgent_Rev();
             rows[i][5] = adlist.get(i).getAgent_Sold();
             rows[i][6] = adlist.get(i).getAgent_Rent();
-            rows[i][9] = adlist.get(i).getUsername();
-            rows[i][10] = adlist.get(i).getPassword();
+            rows[i][8] = adlist.get(i).getUsername();
+            rows[i][9] = adlist.get(i).getPassword();
             
             ImageIcon pic = new ImageIcon(new ImageIcon(adlist.get(i).getAgent_Pic())
                                             .getImage().getScaledInstance(120, 80, Image.SCALE_SMOOTH));
@@ -973,6 +978,15 @@ public class AGENT_VIEW extends javax.swing.JFrame {
     private void BTNviewAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNviewAgentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BTNviewAgentActionPerformed
+
+    private void BTNAddAgentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BTNAddAgentMouseClicked
+        AGENT_ADD AA = new AGENT_ADD();
+        AA.setVisible(true);
+        AA.pack();
+        AA.setLocationRelativeTo(null);
+        AA.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_BTNAddAgentMouseClicked
 
     /**
      * @param args the command line arguments
