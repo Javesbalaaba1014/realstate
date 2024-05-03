@@ -35,7 +35,7 @@ public class admindata {
         this.Agent_Pic = Agent_Pic;
         this.is_archive = is_archive;
         this.username = username;
-        this.password = S;
+        this.password = password;
     }
 
     public Integer getIdAgent() {

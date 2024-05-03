@@ -112,18 +112,21 @@ public class DataQuery {
         
         try {
             st = con.createStatement();
-            rs = st.executeQuery("SELECT `id`, `username`, `pass`, `fname`, `lname`, `mInitial`, `phone` FROM `adminacc` WHERE `is_archived` = 0 AND `AdminID` = " + adminID);
+            rs = st.executeQuery("SELECT `idAgent`, `Agent_Fname`, `Agent_Lname`, `Agent_Phone`, `Agent_Rev`, `Agent_Sold`, `Agent_Rent`, `Agent_Pic`, `is_Archive`, `username`, `password` FROM `agent` WHERE `is_Archive` = 1");
 
             admindata ad;
             while(rs.next()){
-                ad = new admindata(rs.getInt("id"),
-                                rs.getString("username"), 
-                                rs.getString("pass") ,
-                                rs.getString("fname"), 
-                                rs.getString("lname"), 
-                                rs.getString("mInitial"), 
-                                rs.getString("phone"),
-                                adminID
+                ad = new admindata(rs.getInt("idAgent"),
+                                rs.getString("Agent_Fname"), 
+                                rs.getString("Agent_Lname") ,
+                                rs.getString("Agent_Phone"), 
+                                rs.getInt("Agent_Rev"), 
+                                rs.getInt("Agent_Sold"), 
+                                rs.getInt("Agent_Rent"),
+                                rs.getBytes("Agent_Pic"),
+                                rs.getInt("is_Archive"),
+                                rs.getString("username"),
+                                rs.getString("password")
                                 );
                 System.out.print(ad);
                 adlist.add(ad);
